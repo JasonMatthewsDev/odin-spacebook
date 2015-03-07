@@ -11,15 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306190852) do
+ActiveRecord::Schema.define(version: 20150307180522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "friendships", force: true do |t|
     t.integer  "requester_id"
-    t.integer  "requestee_id"
-    t.boolean  "status"
+    t.integer  "requested_id"
+    t.boolean  "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20150306190852) do
     t.datetime "updated_at"
     t.string   "provider"
     t.string   "uid"
+    t.string   "name"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

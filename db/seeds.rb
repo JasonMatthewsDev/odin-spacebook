@@ -1,13 +1,19 @@
 email = 'kid.bytes@gmail.com'
-User.create!(email: email, password: "password", password_confirmation: "password")
+User.create!(email: email, name: 'Jason M', password: "password", password_confirmation: "password")
 
 50.times do
   email = Faker::Internet.email
-  User.create!(email: email, password: "password", password_confirmation: "password")
+  name  = Faker::Name.name
+  User.create!(email: email, name: name, password: "password", password_confirmation: "password")
 end
 
 requester = User.first
-users = User.take(15)
-users.each_with_index do |u, i| 
-  Friendship.create!(requester: requester, requestee: u, status: i % 2) unless requester.id == u.id
+users = User.limit(15).offset(1).order(:created_at)
+users.each_with_index do |u, i|
+  Friendship.create!(requester: requester, requested: u, accepted: i % 2) unless requester.id == u.id
+end
+
+users = User.limit(10).offset(16).order(:created_at)
+users.each do |u|
+  Friendship.create!(requester: u, requested: requester, accepted: false)
 end

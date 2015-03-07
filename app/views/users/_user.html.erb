@@ -1,0 +1,15 @@
+<div>
+  <% unless current_user == user %>
+    <%= user.name %>
+    
+    <% if current_user.is_friend?(user) %>
+      unfriend
+    <% elsif current_user.request_sent?(user) %>
+      cancel
+    <% elsif current_user.request_received?(user) %>
+      accept | deny
+    <% else %>
+      friend
+    <% end %>
+  <% end %>
+</div>
