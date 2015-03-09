@@ -22,12 +22,16 @@ class User < ActiveRecord::Base
     u.in?(friends) || u.in?(inverse_friends)
   end
   
-  def request_sent?(u)
-    u.in?(sent_requests)
+  def find_accepted_friendship(u)
+    friendships.where('requester_id=? OR requested_id=? AND accepted=true', u, u).limit(1).first
   end
   
-  def request_received?(u)
-    u.in?(requests_received)
+  def request_sent(u)
+    friendships.find_by(requested_id: u)
+  end
+  
+  def request_received(u)
+    inverse_friendships.find_by(requester_id: u)
   end
   
   def self.from_omniauth(auth)

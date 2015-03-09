@@ -1,15 +1,18 @@
 <div>
   <% unless current_user == user %>
     <%= user.name %>
-    
-    <% if current_user.is_friend?(user) %>
-      unfriend
-    <% elsif current_user.request_sent?(user) %>
-      cancel
-    <% elsif current_user.request_received?(user) %>
-      accept | deny
+
+    <% if ifriend = current_user.find_accepted_friendship(user) %>
+      <%= link_to "unfriend", ifriend, method: :delete, class: "btn btn-danger btn-xs" %>
+    <% elsif ifriend = current_user.request_sent(user) %>
+      <%= link_to "cancel", ifriend, method: :delete, class: "btn btn-warning btn-xs" %>
+    <% elsif ifriend = current_user.request_received(user) %>
+      <%= link_to "accept", friendship_path(ifriend, accepted: true), method: :patch,
+                  class: "btn btn-success btn-xs" %>
+      <%= link_to "deny", ifriend, method: :delete, class: "btn btn-danger btn-xs" %>
     <% else %>
-      friend
+      <%= link_to "friend", friendships_path(requester_id: current_user, requested_id: user),
+          method: :post, class: "btn btn-primary btn-xs" %>
     <% end %>
   <% end %>
 </div>
