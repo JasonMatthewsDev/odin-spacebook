@@ -1,6 +1,6 @@
 <div>
   <% unless current_user == user %>
-    <%= user.name %>
+    <%= user.name %><br />
 
     <% if ifriend = current_user.find_accepted_friendship(user) %>
       <%= link_to "unfriend", ifriend, method: :delete, class: "btn btn-danger btn-xs" %>

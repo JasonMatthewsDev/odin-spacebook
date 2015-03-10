@@ -27,11 +27,11 @@ class User < ActiveRecord::Base
   end
   
   def request_sent(u)
-    friendships.find_by(requested_id: u)
+    friendships.find_by(requested_id: u, accepted: false)
   end
   
   def request_received(u)
-    inverse_friendships.find_by(requester_id: u)
+    inverse_friendships.find_by(requester_id: u, accepted: false)
   end
   
   def self.from_omniauth(auth)
