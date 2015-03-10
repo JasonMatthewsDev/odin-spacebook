@@ -1,0 +1,7 @@
+<% current_user.feed.each do |single| %>
+  <div>
+    <%= single.content %>
+    <%= content_tag :h5, "by: #{single.user.name} created at #{time_ago_in_words single.created_at} ago" %>
+    <%= render 'shared/like_link', single: single %>
+  </div>
+<% end %>

@@ -1,2 +1,8 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+textarea {
+  resize: vertical;
+  height: 75px;
+  width: 100%;
+}

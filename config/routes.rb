@@ -3,5 +3,7 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   resources :users
-  resources :friendships
+  resources :posts
+  resources :friendships, only: [:create, :destroy]
+  resources :likes, only: [:create, :destroy]
 end

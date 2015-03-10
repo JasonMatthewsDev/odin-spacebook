@@ -1,0 +1,6 @@
+<div>
+  <%= @post.content %>
+  <%= content_tag :h5, "by: #{@post.user.name} created at #{@post.created_at}" %>
+  
+  <%= render 'shared/like_link', single: @post %>
+</div>

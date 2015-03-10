@@ -18,6 +18,9 @@ class User < ActiveRecord::Base
   has_many :requests_received, -> { where("friendships.accepted" => false)},
            through: :inverse_friendships, source: :requester
   
+  has_many :posts
+  has_many :likes
+  
   def is_friend?(u)
     u.in?(friends) || u.in?(inverse_friends)
   end
@@ -32,6 +35,11 @@ class User < ActiveRecord::Base
   
   def request_received(u)
     inverse_friendships.find_by(requester_id: u, accepted: false)
+  end
+  
+  def feed
+    friend_ids = friends.pluck(:id) + inverse_friends.pluck(:id) << id
+    Post.where("user_id IN (#{friend_ids.join(', ')})").order(created_at: :desc)
   end
   
   def self.from_omniauth(auth)

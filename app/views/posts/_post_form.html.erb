@@ -1,0 +1,6 @@
+<%= form_for @post do |f| %>
+  <div class="form-group">
+    <%= f.text_area :content, class: "form-control", placeholder: "Post something...." %>
+    <%= f.submit 'Post', class: "btn btn-primary" %>
+  </div>
+<% end %>
