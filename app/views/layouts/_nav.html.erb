@@ -25,6 +25,7 @@
             <% end %>
           </ul>
         </li>
+        <li><%= link_to 'profile', user_path(current_user) %></li>
         <li><%= link_to 'users', users_path %></li>
         <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
       <% end %>
