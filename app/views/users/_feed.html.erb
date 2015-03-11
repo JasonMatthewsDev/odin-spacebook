@@ -1,8 +1,4 @@
 <% current_user.feed.each do |single| %>
-  <div class="highlight">
-    <%= content_tag :p, single.content %>
-    <%= content_tag :h6, "by: #{single.user.name} created at #{time_ago_in_words single.created_at} ago" %>
-  </div>
-  <%= render 'shared/like_link', single: single %>
+  <%= render 'posts/post_single', single: single %>
   <%= link_to 'comments', single, class: 'btn btn-primary btn-xs' %>
 <% end %>

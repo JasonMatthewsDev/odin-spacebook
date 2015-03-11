@@ -1,9 +1,5 @@
 <div>
-  <div class='highlight'>
-    <%= content_tag :p, @post.content %>
-    <%= content_tag :h6, "by: #{@post.user.name} created at #{time_ago_in_words @post.created_at} ago" %>
-  </div>
-  <%= render 'shared/like_link', single: @post %>
+  <%= render 'posts/post_single', single: @post %>
   <%= " liked by: #{@post.likers.pluck(:name).join(', ')}" %>
   <%= render 'comment/post_comments', single: @post %>
   <%= render 'comment/comment_form', single: @post %>

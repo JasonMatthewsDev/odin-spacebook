@@ -1,0 +1,8 @@
+<div class="highlight">
+  <%= content_tag :p, single.content %>
+  <h6>
+    by: <%= link_to single.user.name, single.user %> 
+    created at: <%= time_ago_in_words single.created_at %> ago
+  </h6>
+</div>
+<%= render 'shared/like_link', single: single %>
