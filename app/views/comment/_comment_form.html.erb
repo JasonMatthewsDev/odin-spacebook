@@ -1,0 +1,7 @@
+<%= form_for single.comments.new do |f| %>
+  <div class="form-group">
+    <%= f.hidden_field :post_id %>
+    <%= f.text_area :content, class: "form-control", placeholder: "Enter a comment...." %>
+    <%= f.submit 'Comment', class: "btn btn-primary" %>
+  </div>
+<% end %>

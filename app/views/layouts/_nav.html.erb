@@ -25,10 +25,9 @@
             <% end %>
           </ul>
         </li>
-        <li><%= link_to 'Users', users_path %></li>
+        <li><%= link_to 'users', users_path %></li>
+        <li><%= link_to 'logout', destroy_user_session_path, method: :delete %></li>
       <% end %>
-      
-      <li><a href="#">Link</a></li>
     </ul>
   </div>
 </nav>

@@ -1,6 +1,9 @@
 <div>
   <%= @post.content %>
-  <%= content_tag :h5, "by: #{@post.user.name} created at #{@post.created_at}" %>
+  <%= content_tag :h5, "by: #{@post.user.name} created at #{time_ago_in_words @post.created_at} ago" %>
   
   <%= render 'shared/like_link', single: @post %>
+  <%= " liked by: #{@post.likers.pluck(:name).join(', ')}" %>
+  <%= render 'comment/post_comments', single: @post %>
+  <%= render 'comment/comment_form', single: @post %>
 </div>

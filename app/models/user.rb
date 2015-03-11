@@ -5,8 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, :omniauth_providers => [:facebook]
   
-  has_many :friendships, foreign_key: :requester_id
-  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: :requested_id
+  has_many :friendships, foreign_key: :requester_id, dependent: :destroy
+  has_many :inverse_friendships, class_name: 'Friendship', foreign_key: :requested_id, dependent: :destroy
   
   has_many :friends, -> { where("friendships.accepted" => true)}, 
            through: :friendships, source: :requested
@@ -18,8 +18,9 @@ class User < ActiveRecord::Base
   has_many :requests_received, -> { where("friendships.accepted" => false)},
            through: :inverse_friendships, source: :requester
   
-  has_many :posts
-  has_many :likes
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   
   def is_friend?(u)
     u.in?(friends) || u.in?(inverse_friends)

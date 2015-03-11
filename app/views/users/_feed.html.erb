@@ -3,5 +3,6 @@
     <%= single.content %>
     <%= content_tag :h5, "by: #{single.user.name} created at #{time_ago_in_words single.created_at} ago" %>
     <%= render 'shared/like_link', single: single %>
+    <%= link_to 'comments', single, class: 'btn btn-primary btn-xs' %>
   </div>
 <% end %>
