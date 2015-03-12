@@ -1,4 +1,8 @@
-<% current_user.feed.each do |single| %>
+<%= will_paginate @posts %>
+
+<% @posts.each do |single| %>
   <%= render 'posts/post_single', single: single %>
   <%= link_to 'comments', single, class: 'btn btn-primary btn-xs' %>
 <% end %>
+
+<%= will_paginate @posts %>
