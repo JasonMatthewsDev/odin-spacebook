@@ -18,7 +18,7 @@
             <span class="badge"><%= current_user.requests_received.count %></span>
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu" role="menu">
+          <ul class="dropdown-menu navbar-inverse" role="menu">
             <% current_user.requests_received.each do |r| %>
               <li><%= render 'users/user', user: r %></li>
               <li class="divider"></li>
