@@ -30,10 +30,16 @@ p{
   margin-bottom: 3px;
 }
 
-.dropdown-menu img{
+.dropdown-menu{
+  img{
   height: 20px;
   width: 20px;
   float: left;
   margin-top: 3px;
   margin-right: 3px;
+  }
+  
+  .badge{
+    background-color: $brand-warning;
+  }
 }
